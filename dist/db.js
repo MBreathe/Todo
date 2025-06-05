@@ -1,11 +1,12 @@
 import { MongoClient, ServerApiVersion } from "mongodb";
+import 'dotenv/config';
 const dbname = 'crud_mongodb';
-const state = {
+export const state = {
     db: null
 };
-const uri = process.env.MONGODB_URI;
+const uri = process.env.MONGODB;
 if (!uri)
-    throw new Error('MONGODB_URI is not defined');
+    throw new Error('MONGODB is not defined');
 const client = new MongoClient(uri, {
     serverApi: {
         version: ServerApiVersion.v1,
@@ -21,10 +22,4 @@ export async function connect() {
     catch (e) {
         console.error(e);
     }
-    finally {
-        await client.close();
-    }
-}
-export function getDb() {
-    return state.db;
 }
