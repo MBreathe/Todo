@@ -31,59 +31,6 @@
         </div>
     </div>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/js/bootstrap.bundle.min.js" integrity="sha384-j1CDi7MgGQ12Z7Qab0qlWQ/Qqz24Gc6BM0thvEMVjHnfYGF0rmFCozFSxQBxwHKO" crossorigin="anonymous"></script>
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script>
-        $(document).ready(() => {
-            const todoList = $('#todoList');
-            const form = $('#form');
-            const todoUserInput = $('#todoUserInput');
-
-            const getTodos = async () => {
-                try {
-                    const response = await fetch('/getTodos', { method: 'GET' })
-                    if (!response.ok) {
-                        throw new Error(response.statusText)
-                    }
-                    const data = await response.json();
-                    console.log(data);
-                    displayTodoList(data);
-                } catch (e) {
-                    console.error(e)
-                }
-            }
-            getTodos();
-            const resetTodosInput = () => {
-                todoUserInput.value = '';
-            }
-            const buildIds = (todo) => {
-                return {
-                    editID: 'edit_' + todo._id,
-                    deleteID: 'delete_' + todo._id,
-                    listItemID: 'listItem_' + todo._id,
-                    todoID: 'todo_' + todo._id
-                }
-            }
-            const buildTemplate = (todo, ids) => {
-                return `<li class="list-group-item" id="${ids.listItemID}">
-                            <div class="row">
-                                <div class="col-md-4" id="${ids.todoID}">${todo.title}</div>
-                                <div class="col-md-4"></div>
-                                <div class="col-md-4 text-right">
-                                    <button type="button" class="btn btn-secondary" id="${ids.editID}">Edit</button>
-                                    <button type="button" class="btn btn-danger" id="${ids.deleteID}">Delete</button>
-                                </div>
-                            </div>
-                        </li>`
-            }
-            const displayTodoList = (data) => {
-                data.forEach(todo => {
-                    let ids = buildIds(todo);
-                    todoList.append(buildTemplate(todo, ids));
-                    //editTodo(todo,ids.todoID, ids.editID);
-                    //deleteTodo(todo, ids.listItemID, ids.deleteID);
-                })
-            }
-        })
-    </script>
+    <script type="module" src="/dataHandler.js"></script>
 </body>
 </html>

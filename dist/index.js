@@ -6,8 +6,10 @@ import bodyParser from 'body-parser';
 import { connect, state } from "./db.js";
 import { checkDb } from './middleware.js';
 import { statusCode } from "./statusCodes.js";
+const __dirname = dirname(fileURLToPath(import.meta.url));
 const app = express();
 app.use(bodyParser.json());
+app.use(express.static(join(__dirname, '../dist')));
 const collection = 'todo';
 try {
     await connect();
@@ -24,12 +26,12 @@ try {
         const { id } = req.params;
         const userInput = req.body;
         const result = await state.db.collection(collection).updateOne({ _id: new ObjectId(id) }, { $set: { title: userInput.title } });
-        res.status(statusCode.ok).json(result);
+        res.status(statusCode.ok).json(userInput);
     });
     app.post('/', checkDb, async (req, res) => {
         const userInput = req.body;
         const result = await state.db.collection(collection).insertOne(userInput);
-        res.status(statusCode.created).json(result);
+        res.status(statusCode.created).json(userInput);
     });
     app.delete('/:id', checkDb, async (req, res) => {
         const { id } = req.params;
