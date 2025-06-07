@@ -1,5 +1,5 @@
 ## TODO-list (MongoDB CRUD C/A)
-___
+
 ### _ABOUT:_
 #### This is a simple TODO-list application with backend and MongoBD database. It is written mainly in TS (I really wanted to practice what I have been learning for the past few days). The main goal of this project is/was to make a functional TODO web application to serve the basic CRUD functionality.
 ___
