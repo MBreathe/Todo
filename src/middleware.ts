@@ -25,4 +25,5 @@ export function checkPostRequest(req: Request, res: Response, next: NextFunction
 }
 export function checkID(req: Request, res: Response, next: NextFunction): void {
     if (!req.params.id) errorHandler(statusCode.badRequest, 'Invalid request', res);
+    next();
 }
