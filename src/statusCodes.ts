@@ -1,11 +1,5 @@
-interface StatusCodes {
-    ok: number;
-    created: number;
-    badRequest: number;
-    unauthorized: number;
-    forbidden: number;
-    notFound: number;
-    internalServerError: number;
+export interface StatusCodes {
+    [key: string]: number;
 }
 export const statusCode: StatusCodes = {
     ok: 200,

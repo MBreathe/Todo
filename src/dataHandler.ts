@@ -4,10 +4,7 @@ interface Todo {
     completed?: boolean;
 }
 interface IDs {
-    editID: string;
-    deleteID: string;
-    listItemID: string;
-    todoID: string;
+    [key: string]: string;
 }
 interface FetchOptions {
     method?: string;

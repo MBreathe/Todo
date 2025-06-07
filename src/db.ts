@@ -9,7 +9,7 @@ const dbname: string = 'crud_mongodb';
 export const state: State = {
     db: null
 };
-const uri = process.env.MONGODB;
+const uri: string | undefined = process.env.MONGODB;
 if (!uri) throw new Error('MONGODB is not defined');
 
 const client = new MongoClient(uri, {
